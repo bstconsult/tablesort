@@ -2,10 +2,10 @@
 // Years can be 4 digits. Days and Months can be 1 or 2 digits.
 (function(){
   var parseDate = function(date) {
-    date = date.replace(/\-/g, '/');
+    date = date.replace(/\-|\./g, '/');
     date = date.replace(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/, '$3-$2-$1'); // format before getTime
 
-    return new Date(date).getTime() || -1;
+    return new Date(date.substr(0,10)).getTime() || -1;
   };
 
   Tablesort.extend('date', function(item) {
